@@ -29,10 +29,15 @@ public class Gestion_ficheros_ej6 {
 		catch (IOException ioe1) {
 			ioe1.printStackTrace();
 		}
-		String dir = "C:\\Users\\Jan\\Downloads";
-		File f = new File(dir);
-		for (String s: "NuevoDir") {
-			
+
+		File directory = new File("NuevoDir");
+		File[] files = directory.listFiles();
+		
+		for (File file: files) {
+			if (!file.delete()) {
+				System.out.println("Failed to delete "+file);
+			}
 		}
+		directory.delete();
 }
 }
