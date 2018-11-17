@@ -5,9 +5,11 @@ import java.io.*;
 public class fichero_binarios_1 {
 
 	public static void main(String[] args) throws IOException {
+		//Ejercicio 1
 		System.out.println("Averigua jerárquicamente, ¿cuál es la relación entre DataInputStream FileInputStream?");
 		System.out.println("DataInputStream hereda de FileInputStream");
 		
+		//Ejercicio 2
 		DataOutputStream dataOS = new DataOutputStream (new FileOutputStream(new File("C:\\Users\\Usuario\\Desktop\\prueba.txt")));
 
 		String [] Nombre= new String[5];
