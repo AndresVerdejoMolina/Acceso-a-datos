@@ -9,13 +9,19 @@ public class Gestion_ficheros_ej2 {
 		System.out.println("Introduce una direccion:");
 		Scanner direccion=new Scanner(System.in);
 		String dir=direccion.nextLine();
+		//Leyendo direccion
 		File f=new File(dir);
 		String[] archivos=f.list();
 		System.out.printf("Fichero en el directorio actual: %d %n", archivos.length);
+		//Imprimir numero de ficheros/directorios del directorio introducidos
 		for(int i=0; i<archivos.length;i++) {
+			//Recorriendo 1 a 1 cada fichero/directorio
 			File f2= new File(f, archivos[i]);
 			System.out.printf("Nombre: %s, es fichero?: %b, es directorio?:%b %n", archivos[i],
 				f2.isFile(), f2.isDirectory());
+			/*Imprimiendo datos de cada fichero/directorio:
+			nombre, en caso de que sea un fichero devolverá true, en caso de que sea un directorio devolverá true			
+			*/
 		}
 	}
 }
