@@ -14,15 +14,18 @@ public class acceso_sax {
 	}
 class GestionContenido extends DefaultHandler {
 		int contador = 0;
+		//inicializando variable "contador"
 		public GestionContenido() {
 			super();
 		}
 		public void endDocument(){
+		//imprimiendo variable contador
 			System.out.println(contador);
 		}
 		public void startElement (String uri, String nombre, String nombreC, Attributes atts) {
-
+		//informacion de la etiqueta de incio del elemento
 			if(nombre.equals("TITLE")) {
+			//en caso de que el "nombre" se ha igual a "TITLE", entonces encontramos un disco y sumamos contador
 				contador++;
 			}
 		}
