@@ -11,7 +11,9 @@ public class acceso_sax_4 {
 				System.out.println("Introduce un artista:");
 				Scanner primero= new Scanner(System.in);
 				String artista=primero.nextLine();
+				//Obteniendo nombre del artista
 				GestionContenido gestor = new GestionContenido(artista);
+				//inicializando variable "gestor" de tipo GestionContenido
 				procesadorXML.setContentHandler(gestor);
 				InputSource fileXML = new InputSource ("C:\\Users\\Usuario\\Desktop\\DAM2\\discoteca.xml");
 				procesadorXML.parse(fileXML);
@@ -22,21 +24,22 @@ public class acceso_sax_4 {
 			String artista = "";
 			public GestionContenido(String Artista) {
 				super();
-				this.artista=Artista;
-				
+				this.artista=Artista;				
 			}
 			public void endDocument(){
 				System.out.println(contador);
 			}
 			public void startElement (String uri, String nombre, String nombreC, Attributes atts) {
-
 			
 			}
 			public void characters(char[] ch, int inicio, int longitud) throws SAXException {
 				String car = new String (ch, inicio, longitud);
+				//Guardar informacion de cada etiqueta en "car"
 				if(car.equals(artista)) {
+					//En el caso de que la variable "car" se ha igual al artista introducido, se sumará 1 en la variable contador
 					contador++;
 				}else{
-				System.out.println("No se ha encontrado el artista: " + artista);
+					//Si no se encuentra, imprimira esta mensaje con el artista no hayado
+					System.out.println("No se ha encontrado el artista: " + artista);
 			}
 	}
