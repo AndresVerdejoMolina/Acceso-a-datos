@@ -11,6 +11,7 @@ public class fichero_binarios_1 {
 		
 		//Ejercicio 2
 		DataOutputStream dataOS = new DataOutputStream (new FileOutputStream(new File("C:\\Users\\Usuario\\Desktop\\prueba.txt")));
+		//guardando fichero en dataOS con DataOuroutStream para leer datos primitivos
 
 		String [] Nombre= new String[5];
 		Nombre[0]="Lucas";
@@ -18,6 +19,7 @@ public class fichero_binarios_1 {
 		Nombre[2]="Laura";
 		Nombre[3]="Pepe";
 		Nombre[4]="Dolores";
+		//creando arrrays con los nombres
 		
 		int [] Edades = new int[5];
 		Edades[0]=13;
@@ -25,13 +27,15 @@ public class fichero_binarios_1 {
 		Edades[2]=18;
 		Edades[3]=9;
 		Edades[4]=21;
+		//creando arrays con las edades
 		
 		for (int i = 0; i < 5; i++) {
 			dataOS.writeUTF(Nombre[i]);
+			//insetando de 1 a 1, cada nombre
 			dataOS.writeInt(Edades[i]);
+			//insetando de 1 a 1, cada edad
 		}
 		dataOS.close();
-
 	}
 
 }
