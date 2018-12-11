@@ -4,6 +4,9 @@ import java.io.*;
 public class Gestion_ficheros_ej6 {
 
 	public static void main(String[] args) {
+		/*Realiza un programa que elimine el directorio creado en el punto anterior.
+		Para ello habrás de eliminar todos los archivos que se encuentren dentro del directorio
+		*/
 		File d=new File("NuevoDir");
 		//Directorio guardado en "d"
 		File f1= new File(d,"Fichero1.txt");
