@@ -7,7 +7,9 @@ public class Gestion_ficheros_ej1 {
 	*/
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		String dir="\\C:\\Users\\Usuario\\Downloads";
+		System.out.println("Introduce una direccion");
+		Scanner direccion=new Scanner(System.in);
+		String dir=direccion.nextLine();
 		//Direccion del directorio
 		File f=new File(dir);
 		//Creand variable de tipo archivo donde guardaremos la direccion
