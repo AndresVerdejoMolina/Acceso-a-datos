@@ -3,6 +3,8 @@ package Acceso_a_datos;
 public class Gestion_ficheros_ej5 {
 
 	public static void main(String[] args) {
+		/*Realiza un programa Java que muestre la siguiente información de un fichero 
+cualquiera: Nombre, ruta relativa, ruta absoluta, permisos y tamaño.*/
 		File f=null;
 		//Inicializando "f"
 		File[] paths;
