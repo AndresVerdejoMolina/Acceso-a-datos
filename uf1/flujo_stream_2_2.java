@@ -4,6 +4,7 @@ import java.io.*;
 public class flujo_strems_2 {
 
 	public static void main(String[] args) throws IOException {
+		/*Modifica el código anterior para que se le puede pasar el nombre del fichero al programa.*/
 		// TODO Auto-generated method stub
 		File fichero = new File("C:\\Users\\Usuario\\Desktop\\prueba.txt");
 		FileWriter fic = new FileWriter (fichero);
