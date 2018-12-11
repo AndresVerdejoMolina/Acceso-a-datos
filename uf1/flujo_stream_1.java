@@ -5,6 +5,7 @@ import java.util.*;
 public class flujo_strems_1 {
 
 	public static void main(String[] args)throws IOException  {
+		/*Modifica el código anterior para que el programa vaya leyendo caracteres de 20 en 20.*/
 			System.out.println("introuduce la ruta");
 			Scanner leer= new Scanner(System.in);
 			String input= leer.nextLine();
