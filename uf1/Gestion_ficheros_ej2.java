@@ -8,7 +8,6 @@ public class Gestion_ficheros_ej2 {
 	public static void main(String[] args) {
 		File f=new File (args[0]);
 		//Recogiendo ruta atraves de args, y lo guardamos en la variable "f" de tipo archivo
-	      try {  
 		  for (String s: args) {
 			  //Recorriendo todos los archivos del directorio
 			  f = new File(s);
@@ -18,8 +17,5 @@ public class Gestion_ficheros_ej2 {
 				//Imprimiendo ficheros
 			 }
 		  }
-
-	      } catch(Exception e) {
-		 e.printStackTrace();
-	      }
+	 }
 }
