@@ -1,0 +1,38 @@
+package Acceso_a_datos;
+import java.io.File;
+import javax.xml.parsers.*;
+import org.w3c.dom.*;
+public class dom_LeerXML {
+	public static void main (String[] args) {
+		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		try {
+			DocumentBuilder builder = factory.newDocumentBuilder();
+			Document document = builder.parse(new File ("C:\\Users\\Usuario\\Desktop\\DAM2\\Empleados.txt"));
+			System.out.printf ("Elemento raíz : %s %n", document.getDocumentElement().getNodeName());
+			//imprimiendo nombre del nodo raiz
+			NodeList datos_empleados = document.getElementsByTagName(document.getDocumentElement().getNodeName());
+			System.out.printf ("Nodos a recorrer: %d %n", datos_empleados.getLength());
+			//Numero de nodos que vamos a recorrer
+			for (int i = 0; i < datos_empleados.getLength(); i++) {
+				//Recorriendo todos los nodos
+				Node emple = datos_empleados.item(i);
+				//Obteniendo datos del empleado, en la posicion de (i)
+				if (emple.getNodeType() == Node.ELEMENT_NODE){
+					//si el elemento es un nodo entra aqui
+					Element elemento = (Element) emple;
+					System.out.printf("ID = %s %n", elemento.getElementsByTagName("id_empleado").item(0).getTextContent());
+					//Buscando y imprimiendo el contenido del elemento llamado "id_empleado"
+					System.out.printf(" * Apellido = %s %n", 
+					elemento.getElementsByTagName("apellido_empleado").item(0).getTextContent());
+					//Buscando y imprimiendo  el contenido del elemento llamado "apellido"
+					System.out.printf(" * Departamento = %s %n", 
+					elemento.getElementsByTagName("dep_empleado").item(0).getTextContent());
+					//Buscando y imprimiendo  el contenido del elemento llamado "dep_empleado"
+					System.out.printf(" * Salario = %s %n",
+					elemento.getElementsByTagName("salario_empleado").item(0).getTextContent());
+					//Buscando y imprimiendo  el contenido del elemento llamado "salario_empleado"
+				}
+			}
+	    } catch (Exception e) {e.printStackTrace();}
+	}
+}
