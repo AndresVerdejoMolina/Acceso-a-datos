@@ -1,0 +1,73 @@
+package Acceso_a_datos;
+	import org.w3c.dom.*;
+	import javax.xml.parsers.*;
+	import javax.xml.transform.*;  
+	import javax.xml.transform.dom.*;
+	import javax.xml.transform.stream.*;
+	import java.io.*;
+	import java.util.ArrayList;
+	public class dom_Crear1 {
+		public static void main (String args[]) throws IOException {
+			File fichero = new File ("C:\\Users\\Usuario\\Desktop\\DAM2\\Empleados.txt");
+			BufferedReader file = new BufferedReader ( new FileReader(fichero));
+			//Creando archivo
+			String[] partes1;
+			ArrayList<String> apellidos_empleado = new ArrayList<String>();
+			ArrayList<Integer> ids_empleado = new ArrayList<Integer>();
+			ArrayList<Integer> deps_empleado = new ArrayList<Integer>();
+			ArrayList<Double> salarios_empleado = new ArrayList<Double>();
+			//ArrayList para los datos
+			String linea;
+			/* Aquí estamos creando una instancia de DocumentBuilderFactory para construir el parser. Se debe 
+			encerrar entre try-catch porque se puede producir la excepción ParserConfigurationException*/
+			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			try {
+				/* Aquí estamos creando una instancia de DocumentBuilderFactory para construir el parser. Se debe 
+				encerrar entre try-catch porque se puede producir la excepción ParserConfigurationException*/
+				/*Creamos un documento vacío de nombre document con el nodo raíz de nombre Empleados y asignamos la versión XML. La interfaz DOMImplementation permite crear objetos Document con nodo raíz*/
+				DocumentBuilder builder = factory.newDocumentBuilder();
+				DOMImplementation implementation = builder.getDOMImplementation();
+				Document document = implementation.createDocument (null,"empleados", null);
+				document.setXmlVersion("1.0");
+					while((linea = file.readLine()) != null) {
+				       partes1 = linea.split(":");
+				       //Separando los datos con ':', y guardandolos en los arraylist correspondientes
+					   ids_empleado.add(Integer.parseInt(partes1[0]));
+					   apellidos_empleado.add(partes1[1]);
+					   deps_empleado.add(Integer.parseInt(partes1[2]));
+					   salarios_empleado.add(Double.parseDouble(partes1[3])); 
+					}
+				 	file.close();
+					
+				 	for(int i = 0; i < apellidos_empleado.size()-1; i++) {
+						Element raiz = document.createElement ("empleado");
+						//nombre del nodo
+						document.getDocumentElement().appendChild(raiz);
+						CrearElemento ("id_empleado", Integer.toString(ids_empleado.get(i)), raiz, document);
+						CrearElemento ("apellido_empleado",apellidos_empleado.get(i).trim(), raiz, document);
+						CrearElemento ("dep_empleado", Integer.toString(deps_empleado.get(i)), raiz, document);
+						CrearElemento ("salario_empleado", Double.toString(salarios_empleado.get(i)),raiz, document);
+						/*Cada nodo hijo tendrá su valor (por ejemplo: 1,FERNANDEZ, 10, 1000.45). 
+						 Para crear un elemento usamos el método createElement (String) llevando como parámetro el nombre que se pone entre las etiquetas menor que y mayor que. */
+					}
+					
+				 /*Primero crearemos la fuente (Source) XML a partir del documento (document);
+				   después se crea el resultado (Result) en el fichero Empleados.xml A continuación, se obtiene un TransformerFactory y se realiza la transformación del documento al fichero */
+				Source source = new DOMSource (document);
+				Result result = new StreamResult (new java.io.File ("C:\\Users\\Usuario\\Desktop\\DAM2\\Empleados.txt"));
+				Transformer transformer = TransformerFactory.newInstance().newTransformer();
+				transformer.transform (source, result);
+			} catch (Exception e ) { System.err.println ("Error: " + e);}
+			file.close();
+		}
+
+		static void CrearElemento (String datoEmpleado, String valor, Element raiz, Document document) {
+		/* Faltará comentar el método CrearElemento. Este método, como hemos visto anteriormente, genera los nodos-hijo de cada nodo <Empleado>.
+		 * Este método es llamado 4 veces por cada Empleado. Genera los nodos <id>, <apellido>,<dep> y <salario>.
+		 * Primero genera el elemento (Element), después el texto o valor (Text) y los asocia con la raiz o nodo padre */
+			Element elem = document.createElement (datoEmpleado);
+			Text text = document.createTextNode(valor);
+			raiz.appendChild (elem);
+			elem.appendChild (text);
+		}
+	}
